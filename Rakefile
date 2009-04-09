@@ -5,7 +5,7 @@ require 'date'
 require 'spec/rake/spectask'
 
 GEM = "lifeline"
-GEM_VERSION = "0.0.2"
+GEM_VERSION = "0.0.3"
 AUTHOR = "Corey Donohoe"
 EMAIL = "atmos@atmos.org"
 HOMEPAGE = "http://twifeline.atmos.org"

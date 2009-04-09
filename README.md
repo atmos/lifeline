@@ -11,7 +11,7 @@ It's a sinatra app, packaged as a gem, deployed as a rack app.
 
 Your basic deps look like this:
 
-    % sudo gem install oauth json haml chronic curb data_objects dm-core dm-types dm-validations dm-timestamps sinatra
+    % sudo gem install oauth json haml curb data_objects dm-core dm-types dm-validations dm-timestamps sinatra
 
 Deployment
 ==========
