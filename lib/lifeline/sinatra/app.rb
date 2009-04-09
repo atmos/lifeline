@@ -12,6 +12,7 @@ module Lifeline
       def current_user
         session[:user_id].nil? ? nil : ::Lifeline::User.get(session[:user_id])
       end
+
       def distance_of_time_in_words(from_time, to_time)
         distance_in_minutes = ((to_time - from_time) / 60).round
 
@@ -64,10 +65,36 @@ module Lifeline
     get '/application.js' do
       <<-EOF
 $(function() {
+  function time_ago_in_words(timestamp_id) {
+    var now = (new Date).getTime();
+    var timestamp = timestamp_id.replace(/created_at_\\d+_/, '');
+    var result = null;
+    if(timestamp.match(/\\d+/)) {
+      var dt = Math.round(parseInt((now / 1000) - timestamp)/60);
+      if(dt == 0) { result = "less than a minute"; }
+      else if(dt == 1) { result = "1 minute"; }
+      else if(dt >= 2 && dt <= 45) { result = dt + ' minutes'; }
+      else if(dt >= 46 && dt <= 90) { result = 'about 1 hour'; }
+      else if(dt >= 90 && dt <= 1440) { result = 'about ' + Math.round(parseFloat(dt)/60.0) + ' hours'; }
+      else if(dt >= 1440 && dt <= 2880) { result = '1 day'; }
+      else { result = Math.round(parseInt(dt)/1440) + ' days'; }
+    }
+    return(result);
+  }
   function refresh_page(since_id) {
     $.get("/refresh/"+since_id, function(html) {
       $('ol.statuses').prepend(html)
       $(html).show('Explode',{},500);
+    });
+    var i = 0;
+    $('ol li span.entry-meta').each(function() {
+      if(i += 1 > 25) {
+        $(this).remove;
+      } else {
+        var result = time_ago_in_words(this.id);
+        var content = $(this).html().replace(/.*? ago/, result+ ' ago');
+        $(this).html(content);
+      }
     });
   };
 

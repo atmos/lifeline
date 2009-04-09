@@ -6,7 +6,6 @@ describe "peacing out" do
     get '/peace'
 
     get '/'
-    last_response.should have_selector("h4.fancy > a[href='/signup']:contains('Get Started Now')")
+    last_response.should have_selector("a[href='/signup']:contains('Get Started')")
   end
 end
-

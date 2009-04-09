@@ -5,11 +5,11 @@ require 'date'
 require 'spec/rake/spectask'
 
 GEM = "lifeline"
-GEM_VERSION = "0.0.1"
+GEM_VERSION = "0.0.2"
 AUTHOR = "Corey Donohoe"
 EMAIL = "atmos@atmos.org"
 HOMEPAGE = "http://twifeline.atmos.org"
-SUMMARY = "A gem that provides twitter friends timeline as a widget"
+SUMMARY = "A gem that provides a sinatra app for your friends timeline"
 
 spec = Gem::Specification.new do |s|
   s.name = GEM
