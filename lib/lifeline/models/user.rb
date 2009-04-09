@@ -19,8 +19,8 @@ module Lifeline
       ::OAuth::AccessToken.new(::Lifeline::OAuth.consumer, token, secret)
     end
 
-    def friends_timeline
-      response = Lifeline::OAuth.consumer.request(:get, '/statuses/friends_timeline.json?count=25',
+    def friends_timeline(since_id = 14000000)
+      response = Lifeline::OAuth.consumer.request(:get, "/statuses/friends_timeline.json?since=#{since_id}",
                                                   access_token, {:scheme => :query_string})
       case response
       when Net::HTTPSuccess

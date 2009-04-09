@@ -1,10 +1,10 @@
 require File.dirname(__FILE__)+'/../spec_helper'
 
-describe "home page" do
+describe "refresh page" do
   it "can view their friend's timeline" do
     login_quentin
 
-    JSON.should_receive(:parse).and_return(@json_data)
+    JSON.should_receive(:parse).twice.and_return(@json_data)
 
     user = Lifeline::User.first(:twitter_id => 1484261)
 
@@ -13,6 +13,10 @@ describe "home page" do
     last_response.should have_selector("ol.statuses#timeline > li.hentry > span.thumb.author > a > img")
     last_response.should have_selector("ol.statuses#timeline > li.hentry > span.status-body > span.entry-content")
     last_response.should have_selector("ol.statuses#timeline > li.hentry > span.status-body > span.entry-meta")
+
+    since = Time.now - 45
+    get "/refresh/#{since.to_i}"
+    last_response.status.should == 200
   end
   before(:all) do
   @json_data = 
@@ -125,81 +129,6 @@ describe "home page" do
   "source"=>
    "<a href=\"http://iconfactory.com/software/twitterrific\">twitterrific</a>",
   "in_reply_to_screen_name"=>nil,
-  "created_at"=>"Thu Apr 09 00:17:21 +0000 2009"},
- {"user"=>
-   {"name"=>"schlickw",
-    "profile_sidebar_fill_color"=>"e0ff92",
-    "profile_background_tile"=>false,
-    "profile_sidebar_border_color"=>"87bc44",
-    "profile_link_color"=>"0000ff",
-    "url"=>nil,
-    "favourites_count"=>0,
-    "id"=>16582757,
-    "description"=>nil,
-    "protected"=>true,
-    "utc_offset"=>nil,
-    "profile_text_color"=>"000000",
-    "profile_background_color"=>"9ae4e8",
-    "screen_name"=>"schlickw",
-    "time_zone"=>nil,
-    "notifications"=>false,
-    "friends_count"=>83,
-    "followers_count"=>45,
-    "statuses_count"=>446,
-    "profile_background_image_url"=>
-     "http://static.twitter.com/images/themes/theme1/bg.gif",
-    "following"=>true,
-    "location"=>nil,
-    "created_at"=>"Fri Oct 03 19:40:01 +0000 2008",
-    "profile_image_url"=>
-     "http://s3.amazonaws.com/twitter_production/profile_images/63526391/robinamused_normal.jpg"},
-  "truncated"=>false,
-  "favorited"=>false,
-  "text"=>"KATEE SACKHOFF on Law and Order!!!",
-  "id"=>1480192005,
-  "in_reply_to_user_id"=>nil,
-  "in_reply_to_status_id"=>nil,
-  "source"=>
-   "<a href=\"http://orangatame.com/products/twitterberry/\">TwitterBerry</a>",
-  "in_reply_to_screen_name"=>nil,
-  "created_at"=>"Thu Apr 09 00:10:41 +0000 2009"},
- {"user"=>
-   {"name"=>"BryanLiles",
-    "profile_sidebar_fill_color"=>"F8F8F8",
-    "profile_background_tile"=>false,
-    "profile_sidebar_border_color"=>"141617",
-    "profile_link_color"=>"030005",
-    "url"=>"http://smartic.us",
-    "favourites_count"=>2,
-    "id"=>659933,
-    "description"=>"that guy",
-    "protected"=>false,
-    "utc_offset"=>-18000,
-    "profile_text_color"=>"000000",
-    "profile_background_color"=>"585858",
-    "notifications"=>false,
-    "screen_name"=>"bryanl",
-    "time_zone"=>"Eastern Time (US & Canada)",
-    "friends_count"=>411,
-    "statuses_count"=>4392,
-    "followers_count"=>944,
-    "profile_background_image_url"=>
-     "http://s3.amazonaws.com/twitter_production/profile_background_images/3252365/twitter-bg.png",
-    "following"=>false,
-    "location"=>"Baltimore, MD",
-    "created_at"=>"Thu Jan 18 12:47:55 +0000 2007",
-    "profile_image_url"=>
-     "http://s3.amazonaws.com/twitter_production/profile_images/71274618/Photo_26_normal.jpg"},
-  "truncated"=>false,
-  "favorited"=>false,
-  "text"=>
-   "ctags in vim are a drag... or are they?  maybe this is what the doctor ordered.  http://vimeo.com/4069219  #geekvids",
-  "id"=>1480187637,
-  "in_reply_to_user_id"=>nil,
-  "in_reply_to_status_id"=>nil,
-  "source"=>"<a href=\"http://www.nambu.com\">Nambu</a>",
-  "in_reply_to_screen_name"=>nil,
-  "created_at"=>"Thu Apr 09 00:09:48 +0000 2009"}
-]
+  "created_at"=>"Thu Apr 09 00:17:21 +0000 2009"}]
   end
 end

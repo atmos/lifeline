@@ -55,11 +55,18 @@ module Lifeline
 
     get '/' do
       if current_user
-        @friends_timeline = current_user.friends_timeline
+        @friends_timeline = current_user.friends_timeline[0..25]
         @since_date = Time.now.to_i
         haml :home
       else
         haml :about
+      end
+    end
+
+    get '/refresh/:since' do
+      if current_user
+        @friends_timeline = current_user.friends_timeline(params['since'])
+        result = JSON(:updates => @friends_timeline, :since => Time.now.to_i)
       end
     end
 
