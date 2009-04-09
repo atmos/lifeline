@@ -1,17 +1,13 @@
-.tab
-  %ol.statuses{:id => 'timeline'}
-    - @friends_timeline.each do |entry|
-      - screen_name = entry['user']['screen_name']
-      %li.hentry.status{:id => "status_#{entry['status']}"}
-        %span.thumb.author
-          %a.url{:href => "http://twitter.com/#{screen_name}"}
-            %img.photo{:alt => entry['user']['name'], :width => "48", :height => "48", :src => entry['user']['profile_image_url'] }
-        %span.status-body
-          %strong
-            %a.screen-name{:href => "http://twitter.com/#{screen_name}", :title => entry['user']['name']}= screen_name
-          %span.entry-content= entry['text']
-          %span.meta.entry-meta
-            %a.entry-date{:href => "http://twitter.com/#{screen_name}/status/#{entry['id']}", :rel => "bookmark"}
-              %span.published= entry['created_at']
-            %span= "from #{entry['source']}"
-
+%ol.statuses{:id => 'timeline'}
+  - @friends_timeline.each do |entry|
+    - screen_name = entry['user']['screen_name']
+    %li.entry.selfclear{:id => "status_#{entry['id']}"}
+      %span.thumb
+        %a.url{:href => "http://twitter.com/#{screen_name}"}
+          %img.photo{:alt => entry['user']['name'], :width => "48", :height => "48", :src => entry['user']['profile_image_url'] }
+      %span.entry-content= entry['text']
+      %span.entry-meta
+        = "about #{distance_of_time_in_words_to_now(entry['created_at'])} ago from"
+        %a{:href => "http://twitter.com/#{screen_name}"}
+          %strong= entry['user']['name']
+        = "from #{entry['source']}"

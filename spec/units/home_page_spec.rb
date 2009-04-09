@@ -10,9 +10,9 @@ describe "home page" do
 
     get '/'
     last_response.should have_selector("ol.statuses#timeline")
-    last_response.should have_selector("ol.statuses#timeline > li.hentry > span.thumb.author > a > img")
-    last_response.should have_selector("ol.statuses#timeline > li.hentry > span.status-body > span.entry-content")
-    last_response.should have_selector("ol.statuses#timeline > li.hentry > span.status-body > span.entry-meta")
+    last_response.should have_selector("ol.statuses#timeline > li.entry > span.thumb > a > img")
+    last_response.should have_selector("ol.statuses#timeline > li.entry > span.entry-content")
+    last_response.should have_selector("ol.statuses#timeline > li.entry > span.entry-meta")
   end
   before(:all) do
   @json_data = 

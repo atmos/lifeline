@@ -12,6 +12,23 @@ module Lifeline
       def current_user
         session[:user_id].nil? ? nil : ::Lifeline::User.get(session[:user_id])
       end
+      def distance_of_time_in_words(from_time, to_time)
+        distance_in_minutes = ((to_time - from_time) / 60).round
+
+        case distance_in_minutes
+          when 0          then "less than a minute"
+          when 1          then "1 minute"
+          when 2..45      then "#{distance_in_minutes} minutes"
+          when 46..90     then "about 1 hour"
+          when 90..1440   then "about #{(distance_in_minutes.to_f / 60.0).round} hours"
+          when 1441..2880 then "1 day"
+          else                 "#{(distance_in_minutes / 1440).round} days"
+        end
+      end
+
+      def distance_of_time_in_words_to_now(from_time)
+        distance_of_time_in_words(Time.parse(from_time), Time.now)
+      end
     end
 
     error do
@@ -44,6 +61,23 @@ module Lifeline
       end
     end
 
+    get '/application.js' do
+      <<-EOF
+$(function() {
+  function refresh_page(since_id) {
+    $.get("/refresh/"+since_id, function(html) {
+      $('ol.statuses').prepend(html)
+      $(html).show('Explode',{},500);
+    });
+  };
+
+  $('ol.statuses').everyTime(50000, function(i) {
+    refresh_page($('ol.statuses li')[0]['id'].replace('status_', ''));
+  })
+});
+      EOF
+    end
+
     get '/signup' do
       Lifeline.retryable(:times => 2) do 
         request_token = oauth_consumer.get_request_token
@@ -56,7 +90,6 @@ module Lifeline
     get '/' do
       if current_user
         @friends_timeline = current_user.friends_timeline[0..25]
-        @since_date = Time.now.to_i
         haml :home
       else
         haml :about
@@ -66,7 +99,8 @@ module Lifeline
     get '/refresh/:since' do
       if current_user
         @friends_timeline = current_user.friends_timeline(params['since'])
-        result = JSON(:updates => @friends_timeline, :since => Time.now.to_i)
+        @friends_timeline = @friends_timeline.reject { |entry| entry['id'] <= params['since'].to_i }.compact
+        haml :refresh, :layout => false
       end
     end
 
