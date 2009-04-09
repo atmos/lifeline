@@ -1,0 +1,39 @@
+%html{:xmlns=> "http://www.w3.org/1999/xhtml", 'xml:lang' => "en", :lang => "en"}
+  %head
+    %meta{'http-equiv' => "Content-Type", 'content' => "text/html; charset=utf-8"}
+    %title lifeline.atmos.org - Your friends timeline
+    %link{:href => '/css/screen.css', :media => 'screen', :rel => 'stylesheet', :type => 'text/css', :media => 'screen, projection'}
+    %link{:href => '/css/print.css', :media => 'screen', :rel => 'stylesheet', :type => 'text/css', :media => 'print' }
+    /[if IE]
+      %link{:href => '/css/ie.css', :media => 'screen', :rel => 'stylesheet', :type => 'text/css', :media => 'screen,projection' }
+    %link{:href => '/css/style.css', :media => 'screen', :rel => 'stylesheet', :type => 'text/css', :media => 'screen, projection' }
+
+  %body
+    #container.container
+      #header.span-22.prefix-1
+        %h1.caps
+          %a{:href => 'http://lifeline.atmos.org'} Friends Timeline
+
+      #content.span-17.suffix-2.prefix-2
+        = yield
+      #footer.span-24.last.center
+        %p
+          Lifeline uses
+          %a{:href => 'http://twitter.com'} twitter's
+          %a{:href => 'http://apiwiki.twitter.com/'} oauth api
+          to simplify organizing events with your friends.
+          %a{:href => '/about'} Learn
+          more.
+        %p
+          Another
+          %a{:href => 'http://oauth.org'} oauth
+          experiment brought to you by 
+          %a{:href => 'http://atmos.org'} atmos,
+          source code available on 
+          %a{:href => 'http://github.com/atmos/lifeline'} github,
+          hosted on
+          %a{:href => 'http://engineyard.com/solo'} EY Solo.
+        - if current_user
+          %p
+            Do me a favor and
+            %a{:href => '/peace'} delete these cookies.
