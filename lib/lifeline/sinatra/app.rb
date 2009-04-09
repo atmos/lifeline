@@ -12,6 +12,27 @@ module Lifeline
       def current_user
         session[:user_id].nil? ? nil : ::Lifeline::User.get(session[:user_id])
       end
+
+      def time_ago_in_words(from_time)
+        distance_in_minutes = ((Time.now - Time.parse(from_time)) / 60).round
+        case distance_in_minutes
+        when 0          then "less than a minute"
+        when 1          then "1 minute"
+        when 2..45      then "#{distance_in_minutes} minutes"
+        when 46..90     then "about 1 hour"
+        when 90..1440   then "about #{(distance_in_minutes.to_f / 60.0).round} hours"
+        when 1441..2880 then "1 day"
+        else                 "#{(distance_in_minutes / 1440).round} days"
+        end
+      end
+
+      def fix_url_regexes(content)
+        content.gsub(/(https?\:\/\/\S+)/, "<a href='\\1'>\\1</a>");
+      end
+
+      def fix_at_replies(content)
+        fix_url_regexes(content).gsub(/@([\S]+)/, "<a href='http://twitter.com/\\1'>@\\1</a>");
+      end
     end
 
     error do

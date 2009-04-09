@@ -5,7 +5,7 @@
       %span.thumb
         %a.url{:href => "http://twitter.com/#{screen_name}"}
           %img.photo{:alt => entry['user']['name'], :width => "48", :height => "48", :src => entry['user']['profile_image_url'] }
-      %span.entry-content= entry['text']
+      %span.entry-content= fix_at_replies(entry['text'])
       %span.entry-meta{:id => "created_at_#{entry['user']['id']}_#{Time.parse(entry['created_at']).to_i}"}
         = "#{entry['created_at']} ago by"
         %a{:href => "http://twitter.com/#{screen_name}"}
