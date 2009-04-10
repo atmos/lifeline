@@ -1,7 +1,7 @@
 require File.dirname(__FILE__)+'/../spec_helper'
 
 describe "home page" do
-  it "can view their friend's timeline" do
+  it "can view their friends timeline" do
     login_quentin
 
     JSON.should_receive(:parse).and_return(@json_data)
