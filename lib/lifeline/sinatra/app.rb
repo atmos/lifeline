@@ -27,11 +27,11 @@ module Lifeline
       end
 
       def fix_url_regexes(content)
-        content.gsub(/(https?\:\/\/\S+)/, "<a href='\\1'>\\1</a>");
+        content.gsub(/(https?\:\/\/\S+)/, "<a href='\\1' target='_new'>\\1</a>");
       end
 
       def fix_at_replies(content)
-        fix_url_regexes(content).gsub(/@([\S]+)/, "<a href='http://twitter.com/\\1'>@\\1</a>");
+        fix_url_regexes(content).gsub(/@([\S]+)/, "<a href='http://twitter.com/\\1' target='_new'>@\\1</a>");
       end
     end
 

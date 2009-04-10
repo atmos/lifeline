@@ -3,11 +3,11 @@
     - screen_name = entry['user']['screen_name']
     %li.entry.selfclear{:id => "status_#{entry['id']}"}
       %span.thumb
-        %a.url{:href => "http://twitter.com/#{screen_name}"}
+        %a.url{:href => "http://twitter.com/#{screen_name}", :target => '_new'}
           %img.photo{:alt => entry['user']['name'], :width => "48", :height => "48", :src => entry['user']['profile_image_url'] }
       %span.entry-content= fix_at_replies(entry['text'])
       %span.entry-meta{:id => "created_at_#{entry['user']['id']}_#{Time.parse(entry['created_at']).to_i}"}
         = "#{entry['created_at']} ago by"
-        %a{:href => "http://twitter.com/#{screen_name}"}
+        %a{:href => "http://twitter.com/#{screen_name}", :target => '_new'}
           %strong= entry['user']['name']
         = "from #{entry['source']}"
