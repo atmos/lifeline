@@ -2,3 +2,5 @@
 coverage
 pkg
 lifeline.log
+bin
+vendor

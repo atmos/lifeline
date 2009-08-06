@@ -1,14 +1,16 @@
+require File.dirname(__FILE__)+'/vendor/gems/environments/default.rb'
 require 'rubygems'
 require 'rake/gempackagetask'
 require 'rubygems/specification'
 require 'date'
 require 'spec/rake/spectask'
+require 'bundler'
 
 GEM = "lifeline"
-GEM_VERSION = "0.0.3"
-AUTHOR = "Corey Donohoe"
+GEM_VERSION = "0.0.4"
+AUTHORS = ["Corey Donohoe", "Gustin"]
 EMAIL = "atmos@atmos.org"
-HOMEPAGE = "http://twifeline.atmos.org"
+HOMEPAGE = "http://lifeline.atmos.org"
 SUMMARY = "A gem that provides a sinatra app for your friends timeline"
 
 spec = Gem::Specification.new do |s|
@@ -18,14 +20,15 @@ spec = Gem::Specification.new do |s|
   s.has_rdoc = true
   s.summary = SUMMARY
   s.description = s.summary
-  s.author = AUTHOR
+  s.authors = AUTHORS
   s.email = EMAIL
   s.homepage = HOMEPAGE
 
-  # Uncomment this to add a dependency
-  s.add_dependency "oauth", '~>0.3.2'
-  s.add_dependency "sinatra", '~>0.9.1.1'
-  s.add_dependency "curb", "~>0.3.2"
+  manifest = Bundler::ManifestFile.load(File.dirname(__FILE__) + '/Gemfile')
+  manifest.dependencies.each do |d|
+    next unless d.in?(:release)
+    s.add_dependency(d.name, d.version)
+  end
 
   s.require_path = 'lib'
   s.autorequire = GEM
@@ -49,16 +52,4 @@ end
 
 Rake::GemPackageTask.new(spec) do |pkg|
   pkg.gem_spec = spec
-end
-
-desc "install the gem locally"
-task :install => [:package] do
-  sh %{sudo gem install pkg/#{GEM}-#{GEM_VERSION}}
-end
-
-desc "create a gemspec file"
-task :make_spec do
-  File.open("#{GEM}.gemspec", "w") do |file|
-    file.puts spec.to_ruby
-  end
 end

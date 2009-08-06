@@ -1,11 +1,11 @@
-$TESTING=true
+require File.dirname(__FILE__)+'/../vendor/gems/environments/default.rb'
 $:.push File.join(File.dirname(__FILE__), '..', 'lib')
 require 'rubygems'
 require 'randexp'
+require 'webrat'
 require 'lifeline'
 require 'do_sqlite3'
 require 'rack/test'
-require 'webrat/sinatra'
 require 'dm-sweatshop'
 require 'fakeweb'
 require 'pp'
@@ -32,10 +32,10 @@ Spec::Runner.configure do |config|
     DataMapper.auto_migrate!
     FakeWeb.clean_registry
     FakeWeb.register_uri(:any, %r!^http://twitter.com!,
-                         [{:string => "", :status => ["200", "OK"]},
-                          {:string => "", :status => ["401", "Unauthorized"]},
-                          {:string => "", :status => ["403", "Forbidden"]},
-                          {:string => "", :status => ["502", "Bad Gateway"]}])
+                         [{:body => "", :status => ["200", "OK"]},
+                          {:body => "", :status => ["401", "Unauthorized"]},
+                          {:body => "", :status => ["403", "Forbidden"]},
+                          {:body => "", :status => ["502", "Bad Gateway"]}])
   end
 
   def app
