@@ -37,8 +37,6 @@ testing
     % gem bundle
     % bin/rake
 
-Then you just run rake...
-
 [sinatra]: http://www.sinatrarb.com
 [twitter]: http://twitter.com
 [oauth]: http://oauth.net
