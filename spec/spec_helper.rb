@@ -1,13 +1,9 @@
-require File.dirname(__FILE__)+'/../vendor/gems/environments/default.rb'
+project_root = File.expand_path(File.dirname(__FILE__))
+require File.join(project_root, '..', 'vendor', 'gems', 'environment')
+Bundler.require_env(:test)
 $:.push File.join(File.dirname(__FILE__), '..', 'lib')
-require 'rubygems'
-require 'randexp'
-require 'webrat'
 require 'lifeline'
 require 'do_sqlite3'
-require 'rack/test'
-require 'dm-sweatshop'
-require 'fakeweb'
 require 'pp'
 
 FakeWeb.allow_net_connect = false
@@ -20,7 +16,7 @@ class Net::HTTPResponse
   def body=(content) 
     @body = content 
     @read = true 
-  end 
+  end
 end
 
 Spec::Runner.configure do |config|

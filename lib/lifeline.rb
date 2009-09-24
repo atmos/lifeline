@@ -2,8 +2,6 @@ require 'oauth'
 require 'json'
 require 'haml/util'
 require 'haml/engine'
-require 'chronic'
-require 'curb'
 require 'logger'
 
 require 'dm-core'
