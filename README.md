@@ -6,12 +6,10 @@ Installation
 ============
 It's a sinatra app, packaged as a gem, deployed as a rack app.
 
-    % rake repackage
+    % sudo gem install bundler
+    % gem bundle
+    % bin/rake repackage
     % sudo gem install pkg/lifeline*.gem
-
-Your basic deps look like this:
-
-    % sudo gem install oauth json haml curb data_objects dm-core dm-types dm-validations dm-timestamps sinatra
 
 Deployment
 ==========
@@ -36,15 +34,11 @@ Example config.ru
 
 testing
 =======
-You need [jacqui][jacqui]'s fork of fakeweb for the time being
-    % git clone git://github.com/jacqui/fakeweb.git
-    % cd fakeweb
-    % rake repackage
-    % sudo gem install pkg/fakeweb-1.2.0.gem
+    % gem bundle
+    % bin/rake
 
 Then you just run rake...
 
-[jacqui]: http://github.com/jacqui
 [sinatra]: http://www.sinatrarb.com
 [twitter]: http://twitter.com
 [oauth]: http://oauth.net
