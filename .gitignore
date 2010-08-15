@@ -4,3 +4,4 @@ pkg
 lifeline.log
 bin
 vendor
+.bundle

@@ -1,3 +1,5 @@
+source :rubygems
+
 gem 'rack_hoptoad',   '>=0.0.3'
 gem 'haml',           '~>2.2.0'
 gem 'sinatra',        '~>0.9.4'
@@ -13,15 +15,15 @@ gem "uuidtools",      '~>1.0.7'
 gem "tzinfo",         '~>0.3.13'
 gem "tztime",         '~>0.1.0'
 
-gem 'randexp',                    :only => [:test]
-gem 'rake',                       :only => [:test]
-gem 'rspec',                      :only => [:test], :require_as => 'spec'
-gem 'rcov',                       :only => [:test]
-gem 'bundler',                    :only => [:test]
-gem 'rack-test',      '~>0.5.0',  :only => [:test], :require_as => 'rack/test'
-gem 'webrat',         '~>0.5.0',  :only => [:test]
-gem 'fakeweb',        '>=1.2.5',  :only => [:test]
-gem 'ParseTree',      '>=3.0.4',  :only => [:test], :require_as => [ ]
-gem 'dm-sweatshop',   '~>0.9.11', :only => [:test]
-
-disable_system_gems
+group :test do
+  gem 'randexp'
+  gem 'rake'
+  gem 'rspec',                     :require => 'spec'
+  gem 'rcov'
+  gem 'bundler'
+  gem 'webrat',         '~>0.5.0'
+  gem 'fakeweb',        '>=1.2.5'
+  gem 'rack-test',      '~>0.5.0', :require => 'rack/test'
+  gem 'ParseTree',      '>=3.0.4', :require => [ ]
+  gem 'dm-sweatshop',   '~>0.9.11'
+end

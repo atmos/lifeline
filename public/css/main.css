@@ -1,0 +1,194 @@
+/* 
+Title:		Lifeline
+Author: 	Rustin Jessen - twitter.com/rustin - rustin.jessen@gmail.com
+*/
+
+/*--- Typography ----------------------------------------*/
+h1, h2, h3, h4 {font-family: "Adobe Caslon Pro", "Hoefler Text", Georgia, Garamond, Times, serif; font-weight: normal; line-height: 1.3em;}
+h1 {font-size: 7em;
+	font-weight: bold;
+	}
+h2 {font-size: 3.5em;
+	}
+h3 {font-size: 2em;
+	}
+h4 {font-size: 1.2em;
+	color: #FF6600;
+	}
+h5 {}
+h6 {}
+p {	font-size: 1.3em;
+	line-height: 1.5em;
+	padding-bottom: 1em;
+	}
+
+/*--- structure ----------------------------------------*/
+body {
+	font-family: "Lucida Grande", Verdana, Tahoma, sans-serif;
+	background: #FAFAFC ;
+	text-align: center;
+	color: #3C4C55;
+	font-size: 10px;
+	border-top: 5px solid #557291;
+	}
+
+#header {padding: 2em 0 0 0; border-bottom: 1px solid #E1E5EC;}
+#header a {border:none; background:none;}
+#header, #content {
+	width: 90em;
+	margin: 0 auto;
+	text-align: left;
+	}
+#content {}
+#left, #right {float: left; margin-top: 1em;}	
+#left {
+	width: 62em;
+	margin-right: 1em;
+	}
+#about {
+	margin: 1em;
+	}
+
+#right {
+	width: 26em;
+	margin-left: .5em;
+	}
+#footer {
+	margin-top: 10em;
+	height: 10em;
+	clear:both;
+	background: #f1f1f1;
+	} 
+
+
+#header h1 {display: block; float: left;}
+#bubble {
+	float: left;
+	display: inline-block;
+	top: 22px;
+	right: 10%;
+	height: 36px;
+	background: url(../img/bubble_left.jpg) no-repeat;
+		}
+#bubble p {
+	float: left;
+	display: inline-block;
+	font: normal 10px "Lucida Grande", Verdana, Tahoma, sans-serif;
+	color: #fff;
+	line-height: 0;
+	height: 24px;
+	padding: 13px 15px 0 15px;
+	background:url(../img/bubble_right.jpg) no-repeat top right;
+}
+#bubble p span {float: right; margin: -12px 0 0 10px;}
+
+#get_started {
+	float: left;
+	display: inline-block;
+	height: 60px;
+	background: url(../img/get_started_left.jpg) no-repeat;
+	line-height: 1em;
+	}
+#get_started span {
+	float: left;
+	display: inline-block;
+	font: bold 3em "Adobe Caslon Pro", "Hoefler Text", Georgia, Garamond, Times, serif;
+	color: #fff;
+	height: 60px;
+	padding: 14px 15px 0 15px;
+	background: url(../img/get_started_right.jpg) no-repeat top right;
+	}
+
+div.right_notes {margin:0 auto; padding: 0 18px 0 32px; text-align: justify; color:#AAB8C8;}
+
+
+#left {}
+#left ol {}
+#left ol li.entry {
+	display: block;
+	padding: 2em 1em;
+	border-bottom: 1px solid #E1E5EC;
+	}
+#left ol li:hover.entry {background:#fff; color: #000;}
+#left ol li span.thumb {
+	display: block;
+	float: left;
+	height: 4.8em;
+	width: 4.8em;
+	padding: 5px;
+	background: #E1E5EC;
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;	
+	}
+#left ol li span.thumb img {
+	margin: auto;
+	height: 4.8em;
+	width: 4.8em;
+	}
+	
+#left ol li span.entry-content {
+	display: block;
+	padding-left: 4.8em;
+	font-size: 1.4em;
+	line-height: 1.2em;
+	}
+#left ol li span.entry-meta {
+	display: block;
+	float: right;
+	margin-top:0.8em;
+	color: #7F7F7F;
+	font-family: Baskerville, "Goudy Old Style", "Palatino", "Book Antiqua", serif;
+	font-size: 1.5em;
+	font-weight: normal;
+	font-style: italic;
+	letter-spacing: normal;
+	text-transform: none;
+	}
+#left ol li:last-child {border:none;}
+/*--- links ----------------------------------------*/
+a:link, a:visited {
+	padding-bottom: 0;
+	color: #557291;
+	text-decoration: none;
+	}
+a:hover {
+	padding-bottom: 0;
+	background: #fff;
+	}
+
+/*--- misc ----------------------------------------*/
+hr, .hide 	{display: none;}
+em 			{font-style: italic;}
+abbr, acronym {
+	letter-spacing: .1em;
+	font-style: normal;
+	border-bottom: 1px dotted #e0e0d5;
+	cursor: help;
+	}
+a abbr {border: none;}
+code {display: block; 
+	font-family: "Courier New", Courier, Monaco, monospace; 
+	margin: 2em;
+	font-size: 1.3em;
+	}
+blockquote {
+	font-family: "Adobe Caslon Pro", "Hoefler Text", Georgia, Garamond, Times, serif; font-style: italic;	
+	margin: 2em;
+	font-size: 1.5em;
+	}
+	
+/* clear floats */
+.clear {clear: both;}
+/* self-clear floats */
+.selfclear:after {
+	content: "."; 
+    display: block; 
+    height: 0; 
+    clear: both; 
+    visibility: hidden;
+    }
+.selfclear {display: inline-block;}
+/* Hides from IE-mac \*/
+* html .selfclear { height: 1%;}
+.selfclear {display: block;}
+/* End hide from IE-mac */
