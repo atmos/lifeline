@@ -3,5 +3,5 @@ coverage
 pkg
 lifeline.log
 bin
-vendor
+vendor/gems
 .bundle

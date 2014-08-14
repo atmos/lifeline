@@ -1,4 +1,4 @@
-source :rubygems
+source "https://rubygems.org"
 
 gem 'rack_hoptoad',   '>=0.0.3'
 gem 'haml',           '~>2.2.0'
@@ -19,7 +19,6 @@ group :test do
   gem 'randexp'
   gem 'rake'
   gem 'rspec',                     :require => 'spec'
-  gem 'rcov'
   gem 'bundler'
   gem 'webrat',         '~>0.5.0'
   gem 'fakeweb',        '>=1.2.5'
