@@ -28,7 +28,7 @@ module Lifeline
     def self.consumer
       ::OAuth::Consumer.new(ENV['LIFELINE_READKEY'],
                             ENV['LIFELINE_READSECRET'],
-                            {:site => 'http://twitter.com'})
+                            { :site => "https://api.twitter.com" })
     end
   end
 
